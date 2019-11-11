@@ -232,7 +232,8 @@ class Client extends \Hprose\Client {
             $http_response_header = explode("\r\n", $response_headers);
             $http_response_firstline = array_shift($http_response_header);
             $matches = array();
-            if (preg_match('@^HTTP/[0-9]\.[0-9]\s([0-9]{3})\s(.*)@',
+            //if (preg_match('@^HTTP/[0-9]\.[0-9]\s([0-9]{3})\s(.*)@',
+            if (preg_match('@^HTTP\/[0-9\.]+\s([0-9]{3})\s(.*)@',
                            $http_response_firstline, $matches)) {
                 $response_code = $matches[1];
                 $response_status = trim($matches[2]);

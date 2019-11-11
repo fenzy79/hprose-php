@@ -69,8 +69,8 @@ abstract class Service extends HandlerManager {
     public $onUnsubscribe = null;
     protected $topics = array();
 
-    private static $lastError = null;
-    private static $trackError = false;
+    public static $lastError = null;
+    public static $trackError = false;
     private static $lastErrorHandler = null;
     public static $currentContext = null;
 
@@ -586,11 +586,11 @@ abstract class Service extends HandlerManager {
         $self                = $this;
 
         return $response->then(function($result) use ($self, $context) {
-            Service::$trackError = false;
-            if (Service::$lastError === null) {
+            $self->trackError = false;
+            if ($self->lastError === null) {
                 return $result;
             }
-            return $self->endError(Service::$lastError, $context);
+            return $self->endError($self->lastError, $context);
         });
     }
     private static function getDeclaredOnlyMethods($class) {

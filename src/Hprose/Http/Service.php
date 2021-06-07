@@ -109,14 +109,14 @@ class Service extends \Hprose\Service {
     }
     public function addAccessControlAllowOrigin($origin) {
         $count = strlen($origin);
-        if (($count > 0) && ($origin{$count - 1} === "/")) {
+        if (($count > 0) && ($origin[$count - 1] === "/")) {
             $origin = substr($origin, 0, -1);
         }
         $this->origins[strtolower($origin)] = true;
     }
     public function removeAccessControlAllowOrigin($origin) {
         $count = strlen($origin);
-        if (($count > 0) && ($origin{$count - 1} === "/")) {
+        if (($count > 0) && ($origin[$count - 1] === "/")) {
             $origin = substr($origin, 0, -1);
         }
         unset($this->origins[strtolower($origin)]);
